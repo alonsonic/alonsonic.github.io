@@ -1,0 +1,14 @@
+body {
+  background: #3A0839;
+  padding: 42px 54px;
+}
+
+.elem {
+  width:         20px;
+  height:        20px;
+  border-radius: 50%;
+  background:    white;
+  margin-top:   -10px;
+  margin-left:  -10px;
+  position:      absolute;
+}
