@@ -69,87 +69,89 @@
 			</section>
 		</main>
 
-		<footer>
-			<canvas id="footerCanvas"></canvas>
-			<script>
-				let turbulences = [];
-				let lastMouseX = 0;
-				let lastMouseY = 0;
-				
-				function setup() {
-					let c = createCanvas(windowWidth, 150);
-					c.position(0, windowHeight - 150);
-					c.style('position', 'fixed');
-					c.style('z-index', '-1');
-					c.style('pointer-events', 'none');
-					noFill();
-					strokeWeight(1);
-					background(255);
-				}
-
-				function windowResized() {
-					resizeCanvas(windowWidth, 150);
-					canvas.position(0, windowHeight - 150);
-				}
-
-				function draw() {
-					background(255);
-					
-					const time = millis() * 0.0005;
-					const lines = 8;
-					const amplitude = 20;
-					
-					// Add new turbulence point if mouse is moving significantly
-					if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
-						let mouseSpeed = dist(mouseX, mouseY, lastMouseX, lastMouseY);
-						if (mouseSpeed > 5) {  // Only add turbulence if mouse moves more than 5 pixels
-							turbulences.push({
-								x: mouseX,
-								strength: min(mouseSpeed * 0.5, 8),  // Reduced max strength and made it proportional to speed
-								age: 0
-							});
-						}
-					}
-					lastMouseX = mouseX;
-					lastMouseY = mouseY;
-					
-					// Update and clean up turbulences
-					for (let i = turbulences.length - 1; i >= 0; i--) {
-						turbulences[i].age += 0.1;
-						turbulences[i].strength *= 0.95;
-						if (turbulences[i].strength < 0.5) {
-							turbulences.splice(i, 1);
-						}
-					}
-					
-					for (let j = 0; j < lines; j++) {
-						beginShape();
-						stroke(0, map(j, 0, lines - 1, 20, 100));
-						
-						for (let x = 0; x < width + 20; x += 2) {
-							let y = height * 0.5;
-							
-							// Base wave motion
-							y += sin(x * 0.005 + time + j * 0.5) * amplitude;
-							y += cos(x * 0.002 - time * 0.7) * (amplitude * 0.3);
-							
-							// Add turbulence effects
-							for (let t of turbulences) {
-								let dist = abs(x - t.x);
-								if (dist < 100) {
-									let turbulence = sin(dist * 0.1 + t.age * 2) * t.strength;
-									y += turbulence * (1 - dist/100);
-								}
-							}
-							
-							curveVertex(x, y);
-						}
-						endShape();
-					}
-				}
-			</script>
-		</footer>
+		<div class="footer-wrapper">
+			<footer>
+				<div id="footerCanvas"></div>
+			</footer>
+		</div>
 	</div>
+
+	<script>
+		let turbulences = [];
+		let lastMouseX = 0;
+		let lastMouseY = 0;
+		let canvas;
+		
+		function setup() {
+			canvas = createCanvas(windowWidth, 100);
+			canvas.parent('footerCanvas');
+			noFill();
+			strokeWeight(1);
+			canvas.elt.addEventListener('mousemove', handleMouseMove);
+		}
+
+		function windowResized() {
+			resizeCanvas(windowWidth, 100);
+		}
+
+		function handleMouseMove(event) {
+			let rect = canvas.elt.getBoundingClientRect();
+			let mouseX = event.clientX - rect.left;
+			let mouseY = event.clientY - rect.top;
+			
+			let mouseSpeed = dist(mouseX, mouseY, lastMouseX, lastMouseY);
+			if (mouseSpeed > 5) {
+				turbulences.push({
+					x: mouseX,
+					strength: min(mouseSpeed * 0.5, 8),
+					age: 0
+				});
+			}
+			
+			lastMouseX = mouseX;
+			lastMouseY = mouseY;
+		}
+
+		function draw() {
+			clear();
+			background(255);
+			
+			const time = millis() * 0.0005;
+			const lines = 8;
+			const amplitude = 20;
+			
+			for (let i = turbulences.length - 1; i >= 0; i--) {
+				turbulences[i].age += 0.1;
+				turbulences[i].strength *= 0.95;
+				if (turbulences[i].strength < 0.5) {
+					turbulences.splice(i, 1);
+				}
+			}
+			
+			for (let j = 0; j < lines; j++) {
+				beginShape();
+				stroke(0, map(j, 0, lines - 1, 20, 100));
+				
+				for (let x = 0; x < width + 20; x += 2) {
+					let y = height * 0.5;
+					
+					y += sin(x * 0.005 + time + j * 0.5) * amplitude;
+					y += cos(x * 0.002 - time * 0.7) * (amplitude * 0.3);
+					
+					for (let t of turbulences) {
+						let dist = abs(x - t.x);
+						if (dist < 100) {
+							let turbulence = sin(dist * 0.1 + t.age * 2) * t.strength;
+							y += turbulence * (1 - dist/100);
+						}
+					}
+					
+					curveVertex(x, y);
+				}
+				endShape();
+			}
+		}
+	</script>
 </body>
 
 </html>

@@ -32,14 +32,12 @@ summary { display: block; }
 audio, canvas, video { display: inline-block; }
 audio:not([controls]) { display: none; height: 0; }
 [hidden], template { display: none; }
-html, body {
-   margin: 0;
-   padding: 0;
-   overflow-x: hidden;
+html {
    font-family: sans-serif;
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
 }
+body { margin: 0; }
 a { background: transparent; }
 a:focus { outline: thin dotted; }
 a:active, a:hover { outline: 0; }
@@ -471,19 +469,14 @@ margin on the iframe, cause it breaks stuff. */
 /* Wraps the main content & footer */
 .site-wrapper {
     position: relative;
-    z-index: 10;
     min-height: 100vh;
-    background: #fff;
-    width: 100%;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
 }
 
 main {
     flex: 1;
-    margin-bottom: 150px;  /* Match canvas height */
+    margin-bottom: 150px; /* Match footer height */
 }
 
 body.nav-opened .site-wrapper {
@@ -939,7 +932,7 @@ body:not(.post-template) .post-title {
 }
 
 .post-excerpt {
-    margin: 0.5rem 0;
+    margin-top: 0;
 }
 
 .post-excerpt p {
@@ -954,24 +947,11 @@ body:not(.post-template) .post-title {
 
 .post-meta {
     display: block;
-    margin: 0.5rem 0 0 0;
+    margin: 1.75rem 0 0 0;
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: #9EABB3;
-    position: relative;
-}
-
-/* Separate styles for the main footer with canvas */
-footer:not(.post-meta) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    margin: 0;
-    padding: 0;
-    z-index: -1;
 }
 
 .author-thumb {
@@ -1044,17 +1024,26 @@ footer:not(.post-meta) {
     line-height: 1.5em;
 }
 
+/* Add these styles to control the specific spacing */
+.post-excerpt + .post-meta {
+    margin: 0.5rem 0 0 0; /* Reduce the margin between subtitle and location */
+}
+
+.post-meta {
+    margin: 1.75rem 0 0 0; /* Keep original margins for other post-meta elements */
+}
+
 
 /* ==========================================================================
    5. Single Post - When you click on an individual post
    ========================================================================== */
 
 .post-template .post-header {
-   margin-bottom: 1rem;
+    margin-bottom: 3.4rem;
 }
 
 .post-template .post-title {
-    margin: 0;
+    margin-bottom: 0;
 }
 
 .post-template .post-meta {
@@ -1904,3 +1893,27 @@ footer:not(.post-meta) {
    End of file. Animations should be the last thing here. Do not add stuff
    below this point, or it will probably fuck everything up.
    ========================================================================== */
+/* Remove all previous footer styles and replace with these at the end of the file */
+.footer-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 1rem;
+}
+
+footer:not(.post-meta) {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+#defaultCanvas0 { /* p5.js creates this canvas ID */
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100px !important;
+    pointer-events: auto !important; /* Make sure canvas can receive mouse events */
+}
