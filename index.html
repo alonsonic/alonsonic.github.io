@@ -9,23 +9,25 @@
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
 	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
 	<link rel="canonical" href="index.html">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
 </head>
 <body>
 	<div class="site-wrapper">
-
 		<main id="content" class="post content" role="main">
 			<header class="post-header">
 				<h2 class="post-title">ALONSO ARAUJO</h2>
 			</header>
 			<section class="post-excerpt">
-				<p>Software engineering, product development and technology business strategy.</p>
+				<p>Software engineering, product development and innovation</p>
 			</section>
 			<footer class="post-meta">
 				Currently in New York City
 			</footer>
-		</main>
 
-		<main id="content" class="post content" role="main">
+			<div style="position: relative; margin: 1.6em 0;">
+				<hr style="display: block; height: 1px; border: 0; border-top: #EFEFEF 1px solid; margin: 0; padding: 0;">
+				<div style="display: block; content: ''; width: 7px; height: 7px; border: #E7EEF2 1px solid; position: absolute; bottom: -3px; left: 50%; margin-left: -5px; background: #FFF; border-radius: 100%; box-shadow: #FFF 0 0 0 5px;"></div>
+			</div>
 
 			<header class="post-header">
 				<h4>Experience
@@ -33,57 +35,17 @@
 				</h4>
 			</header>
 			<section class="post-excerpt">
-				<p><a href="https://www.fastcompany.com/3039211/change-agents/inside-mastercards-innovation-labs">Mastercard R&D Labs</a> -
+				<p><a href="https://www.fastcompany.com/3039211/change-agents/inside-mastercards-innovation-labs">Mastercard R&D</a> -
 					Building the future of digital payments and commerce</p>
-				<p><a href="https://gigster.com/">Gigster</a> - Developing minimal viable products for entrepreneurs</p>
+				<p><a href="https://gigster.com/">Gigster</a> - Developing minimal viable products for seed stage startups</p>
 				<p><a href="https://www.oracle.com">Oracle</a> - Helping companies leverage technology to achieve their business goals</p>
-				<p><a href="https://wayra.co.uk/" target="_blank">Wayra</a> - Startup accelerator finalist</p>
+				<p><a href="https://wayra.co.uk/" target="_blank">Wayra</a> - Launching health tech in Movistar's startup incubator</p>
                 <p><a href="https://www.microsoft.com">Microsoft</a> - Winner of Microsoft Imagine Cup global student competition</p>
 			</section>
 
-            <br>
-
-			<header class="post-header">
-				<h4>Interests</h4>
-			</header>
-			<section class="post-excerpt">
-				<p> Software Engineering, Product Development, Entrepreneurship, Innovation, UX Design, R&D, Technical Sales, CRM, Customer Service, Social Media Marketing, 
-                    Customer Experience, Financial Services, Payments, Public Speaking</p>
-			</section>
-
-            <br>
-
-			<header class="post-header">
-				<h4>Technical expertise</h4>
-			</header>
-			<section class="post-excerpt">
-				<p>Frontend - NodeJS, React, Typescript, Tailwind</p>
-                <p>Backend - Springboot, Java, REST API, GRPC API, Kafka, RabbitMQ, Redis </p>
-                <p>Mobile - iOS Swift, Android Java</p>
-                <p>DevOps - Git, Jenkins, Azure, AWS, GCP</p>
-                <p>Data - Oracle, MySQL, Postgres, MongoDB</p>
-                <p>Standards - PCI Compliance, ISO 20022</p>
-                <p>Design - Photoshop, Figma, Sketch, Adobe Premiere</p>
-                <p>AI - Machine Learning, Natural Language Processing, Image Generation</p>
-			</section>
-
-			<br>
-            
-			<header class="post-header">
-				<h4>Achievements 🏆</h4>
-			</header>
-			<section class="post-excerpt">
-				<p><a href="http://alonso.co/certs/takeInitiative2016.jpg" target="_blank">Mastercard's Take Iniative Winner</a> - 2016</p>
-				<p><a href="http://www.eluniversal.com/noticias/estilo-vida/crean-puerta-inteligente-que-cuenta-que-esta-pasando-casa_21347" target="_blank">Best National Computer Science Project</a> - 2015</p>
-				<p><a href="http://alonso.co/certs/oracle-mvp-14.jpg" target="_blank">Oracle's Most Valuable Player</a> - 2014</p>
-				<p><a href="https://wayra.co.uk/" target="_blank">Wayra Startup Accelerator Finalist</a> - 2013</p>
-				<p><a href="http://alonso.co/certs/imagineCup2012.png" target="_blank">Microsoft's Imagine Cup Winner</a> - 2012</p>
-			</section>
-
 			<br>
 			<header class="post-header">
-				<h4>Side projects
-					<time class="post-date">2014 to Now</time>
+				<h4>Projects
 				</h4>
 			</header>
 			<section class="post-excerpt">
@@ -96,27 +58,7 @@
 			<br>
 
 			<header class="post-header">
-				<h4>Languages</h4>
-			</header>
-			<section class="post-excerpt">
-				<p>Spanish, English, Italian</p>
-			</section>
-
-			<br>
-
-			<header class="post-header">
-				<h4>Hobbies</h4>
-			</header>
-			<section class="post-excerpt">
-				<a href="https://play.spotify.com/user/alonsonic/playlist/12diCT9pUlmkXGJSLtEJuw">Jazz</a>,
-				<a href="https://www.theguardian.com/culture/2002/jan/17/artsfeatures.davidlynch">Film</a>,
-				<a href="http://recodeproject.com/translation/alonso-araujo-social-circle-experimental-untitled-edward-zajec">Technology + Art</a>
-			</section>
-
-            <br>
-
-			<header class="post-header">
-				<h4>Socials
+				<h4>Contact
 			</header>
 			<section class="post-excerpt">
 				<p>
@@ -127,6 +69,86 @@
 			</section>
 		</main>
 
+		<footer>
+			<canvas id="footerCanvas"></canvas>
+			<script>
+				let turbulences = [];
+				let lastMouseX = 0;
+				let lastMouseY = 0;
+				
+				function setup() {
+					let c = createCanvas(windowWidth, 150);
+					c.position(0, windowHeight - 150);
+					c.style('position', 'fixed');
+					c.style('z-index', '-1');
+					c.style('pointer-events', 'none');
+					noFill();
+					strokeWeight(1);
+					background(255);
+				}
+
+				function windowResized() {
+					resizeCanvas(windowWidth, 150);
+					canvas.position(0, windowHeight - 150);
+				}
+
+				function draw() {
+					background(255);
+					
+					const time = millis() * 0.0005;
+					const lines = 8;
+					const amplitude = 20;
+					
+					// Add new turbulence point if mouse is moving significantly
+					if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+						let mouseSpeed = dist(mouseX, mouseY, lastMouseX, lastMouseY);
+						if (mouseSpeed > 5) {  // Only add turbulence if mouse moves more than 5 pixels
+							turbulences.push({
+								x: mouseX,
+								strength: min(mouseSpeed * 0.5, 8),  // Reduced max strength and made it proportional to speed
+								age: 0
+							});
+						}
+					}
+					lastMouseX = mouseX;
+					lastMouseY = mouseY;
+					
+					// Update and clean up turbulences
+					for (let i = turbulences.length - 1; i >= 0; i--) {
+						turbulences[i].age += 0.1;
+						turbulences[i].strength *= 0.95;
+						if (turbulences[i].strength < 0.5) {
+							turbulences.splice(i, 1);
+						}
+					}
+					
+					for (let j = 0; j < lines; j++) {
+						beginShape();
+						stroke(0, map(j, 0, lines - 1, 20, 100));
+						
+						for (let x = 0; x < width + 20; x += 2) {
+							let y = height * 0.5;
+							
+							// Base wave motion
+							y += sin(x * 0.005 + time + j * 0.5) * amplitude;
+							y += cos(x * 0.002 - time * 0.7) * (amplitude * 0.3);
+							
+							// Add turbulence effects
+							for (let t of turbulences) {
+								let dist = abs(x - t.x);
+								if (dist < 100) {
+									let turbulence = sin(dist * 0.1 + t.age * 2) * t.strength;
+									y += turbulence * (1 - dist/100);
+								}
+							}
+							
+							curveVertex(x, y);
+						}
+						endShape();
+					}
+				}
+			</script>
+		</footer>
 	</div>
 </body>
 

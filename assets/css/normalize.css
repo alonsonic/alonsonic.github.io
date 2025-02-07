@@ -32,12 +32,14 @@ summary { display: block; }
 audio, canvas, video { display: inline-block; }
 audio:not([controls]) { display: none; height: 0; }
 [hidden], template { display: none; }
-html {
+html, body {
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
    font-family: sans-serif;
    -ms-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
 }
-body { margin: 0; }
 a { background: transparent; }
 a:focus { outline: thin dotted; }
 a:active, a:hover { outline: 0; }
@@ -457,6 +459,7 @@ margin on the iframe, cause it breaks stuff. */
     width: 80%;
     max-width: 710px;
     margin: 0 auto;
+    z-index: 20;
 }
 
 /* Centres vertically yo. (IE8+) */
@@ -469,10 +472,18 @@ margin on the iframe, cause it breaks stuff. */
 .site-wrapper {
     position: relative;
     z-index: 10;
-    min-height: 100%;
+    min-height: 100vh;
     background: #fff;
-    -webkit-transition: -webkit-transform 0.5s ease;
-            transition: transform 0.5s ease;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    margin-bottom: 150px;  /* Match canvas height */
 }
 
 body.nav-opened .site-wrapper {
@@ -907,7 +918,7 @@ body.nav-opened .menu-button .word {
     max-width: 710px;
     margin: 4rem auto;
     padding-bottom: 4rem;
-    border-bottom: #EBF2F6 1px solid;
+    border-bottom: none;
     word-wrap: break-word;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -915,21 +926,8 @@ body.nav-opened .menu-button .word {
     hyphens: auto;
 }
 
-/* Add a little circle in the middle of the border-bottom on our .post
-   just for the lolz and stylepoints. */
 .post:after {
-    display: block;
-    content: "";
-    width: 7px;
-    height: 7px;
-    border: #E7EEF2 1px solid;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    margin-left: -5px;
-    background: #FFF;
-    border-radius: 100%;
-    box-shadow: #FFF 0 0 0 5px;
+    display: none;
 }
 
 body:not(.post-template) .post-title {
@@ -938,6 +936,10 @@ body:not(.post-template) .post-title {
 
 .post-title a {
     text-decoration: none;
+}
+
+.post-excerpt {
+    margin: 0.5rem 0;
 }
 
 .post-excerpt p {
@@ -952,11 +954,24 @@ body:not(.post-template) .post-title {
 
 .post-meta {
     display: block;
-    margin: 1.75rem 0 0 0;
+    margin: 0.5rem 0 0 0;
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
     line-height: 2.2rem;
     color: #9EABB3;
+    position: relative;
+}
+
+/* Separate styles for the main footer with canvas */
+footer:not(.post-meta) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
 }
 
 .author-thumb {
@@ -1035,11 +1050,11 @@ body:not(.post-template) .post-title {
    ========================================================================== */
 
 .post-template .post-header {
-   margin-bottom: 3.4rem;
+   margin-bottom: 1rem;
 }
 
 .post-template .post-title {
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .post-template .post-meta {
