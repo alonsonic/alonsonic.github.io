@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
 	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
 	<link rel="canonical" href="index.html">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+	<script src="assets/js/wave-animation.js"></script>
 </head>
 <body>
 	<div class="site-wrapper">
@@ -37,9 +37,9 @@
 			<section class="post-excerpt">
 				<p><a href="http://mastercard.com/">Mastercard R&D</a> - Building the future of digital payments and commerce</p>
 				<p><a href="https://gigster.com/">Gigster</a> - Developing minimal viable products for seed stage startups</p>
-				<p><a href="https://www.oracle.com">Oracle</a> - Helping companies leverage technology to achieve their business goals</p>
-				<p><a href="https://www.wayra.com/">Wayra</a> - Launching health tech in Movistar's startup incubator</p>
-                <p><a href="https://www.microsoft.com">Microsoft</a> - Winner of Microsoft Imagine Cup global student competition</p>
+				<p><a href="https://www.oracle.com">Oracle</a> - Cloud migrations for largest retailers and banks in Latin America</p>
+				<p><a href="https://www.wayra.com/">Wayra</a> - AI powered health assistant incubated in Movistar's startup accelerator</p>
+                <p><a href="https://www.microsoft.com">Microsoft</a> - Smart Whiteboard EdTech for Microsoft Imagine Cup</p>
 			</section>
 
 			<br>
@@ -57,88 +57,13 @@
 		</main>
 
 		<div class="footer-wrapper">
-			<footer>
-				<div id="footerCanvas"></div>
+			<footer style="border-top: none !important;">
+				<div id="waveCanvas"></div>
 			</footer>
 		</div>
 	</div>
 
-	<script>
-		let turbulences = [];
-		let lastMouseX = 0;
-		let lastMouseY = 0;
-		let canvas;
-		
-		function setup() {
-			canvas = createCanvas(windowWidth, 100);
-			canvas.parent('footerCanvas');
-			noFill();
-			strokeWeight(1);
-			canvas.elt.addEventListener('mousemove', handleMouseMove);
-		}
 
-		function windowResized() {
-			resizeCanvas(windowWidth, 100);
-		}
-
-		function handleMouseMove(event) {
-			let rect = canvas.elt.getBoundingClientRect();
-			let mouseX = event.clientX - rect.left;
-			let mouseY = event.clientY - rect.top;
-			
-			let mouseSpeed = dist(mouseX, mouseY, lastMouseX, lastMouseY);
-			if (mouseSpeed > 5) {
-				turbulences.push({
-					x: mouseX,
-					strength: min(mouseSpeed * 0.5, 8),
-					age: 0
-				});
-			}
-			
-			lastMouseX = mouseX;
-			lastMouseY = mouseY;
-		}
-
-		function draw() {
-			clear();
-			background(255);
-			
-			const time = millis() * 0.0005;
-			const lines = 8;
-			const amplitude = 20;
-			
-			for (let i = turbulences.length - 1; i >= 0; i--) {
-				turbulences[i].age += 0.1;
-				turbulences[i].strength *= 0.95;
-				if (turbulences[i].strength < 0.5) {
-					turbulences.splice(i, 1);
-				}
-			}
-			
-			for (let j = 0; j < lines; j++) {
-				beginShape();
-				stroke(0, map(j, 0, lines - 1, 20, 100));
-				
-				for (let x = 0; x < width + 20; x += 2) {
-					let y = height * 0.5;
-					
-					y += sin(x * 0.005 + time + j * 0.5) * amplitude;
-					y += cos(x * 0.002 - time * 0.7) * (amplitude * 0.3);
-					
-					for (let t of turbulences) {
-						let dist = abs(x - t.x);
-						if (dist < 100) {
-							let turbulence = sin(dist * 0.1 + t.age * 2) * t.strength;
-							y += turbulence * (1 - dist/100);
-						}
-					}
-					
-					curveVertex(x, y);
-				}
-				endShape();
-			}
-		}
-	</script>
 </body>
 
 </html>
