@@ -131,7 +131,7 @@ class WaveAnimation {
     const { width, height } = this.dimensions;
     if (width === 0 || height === 0) return;
 
-    const waterTopLevel = Math.floor(height * 0.6);
+    const waterTopLevel = Math.floor(height * 0.3);
     let frame = "";
 
     for (let y = 0; y < height; y++) {

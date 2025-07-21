@@ -1896,12 +1896,18 @@ body:not(.post-template) .post-title {
    13. Wave Animation Layout - Custom styles for the ASCII wave footer
    ========================================================================== */
 
-/* Override all possible sources of blue borders */
+/* Override all possible sources of blue borders and margins */
 hr, .site-footer, .post-footer, footer {
     border-top: none !important;
     border-bottom: none !important;
     border-left: none !important;
     border-right: none !important;
+}
+
+/* Override site-footer margins for wave animation footer */
+.footer-wrapper footer {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Override any hr styling */
@@ -1933,12 +1939,12 @@ main {
 .footer-wrapper {
     position: relative;
     flex-shrink: 0;
-    height: 180px;
+    height: 84px;
 }
 
 #waveCanvas {
     width: 100%;
-    height: 180px;
+    height: 84px;
     background: #ffffff;
     color: #000000;
     border: none;
@@ -1949,3 +1955,28 @@ main {
 body {
     overflow-y: auto !important;
 }
+
+/* Ensure experience paragraphs wrap properly on small screens */
+@media only screen and (max-width: 600px) {
+    .post-excerpt p:has(.description) {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        margin-bottom: 0.6em;
+    }
+    
+    .post-excerpt p:has(.description) a {
+        font-weight: normal;
+    }
+    
+    /* Show the "since 2012" date on mobile */
+    .post-date {
+        display: inline-block !important;
+    }
+    
+    /* Maintain consistent spacing for experience section */
+    .post-header h4 {
+        margin-bottom: 0.4em;
+    }
+}
+
+
