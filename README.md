@@ -1,6 +1,7 @@
-# Alonso Araujo
+# Readme
 
-Personal website hosted on GitHub Pages.
+Minimalist HTML/CSS/JS personal site 
 
-## 🌐 Live Site
+## Live Site
+[alonso.co](https://alonso.co)
 [alonsonic.github.io](https://alonsonic.github.io)
