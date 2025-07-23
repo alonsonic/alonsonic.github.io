@@ -175,8 +175,8 @@ main {
 
     .post-meta {
         font-size: 1.6rem;
-        line-height: 1.5em;
-        margin-top: 0.5rem;
+        line-height: 0;
+        margin-bottom: 2rem;
     }
 
     .post-date {
