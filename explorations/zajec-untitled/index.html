@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Untitled (after Zajec) - Alonso Araujo</title>
+    <meta name="description" content="Direct translation of Edward Zajec's Untitled, 1977.">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <style>
+        .artwork-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        
+        .artwork {
+            width: 500px;
+            height: 650px;
+            border: 1px solid #ddd;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .artwork-description {
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .museum-label {
+            font-family: "Open Sans", sans-serif;
+            margin-bottom: 1rem;
+        }
+        
+        .artwork-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 0.25rem;
+        }
+        
+        .artwork-details {
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            color: #666;
+        }
+        
+        .navigation {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .artwork {
+                width: 90vw;
+                height: calc(90vw * 1.3);
+            }
+            
+            .artwork-description {
+                max-width: 90vw;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="site-wrapper">
+        <main id="content" class="post content" role="main">
+            <div class="artwork-container">
+                <div class="artwork" id="sketch-container">
+                    <!-- Processing sketch will be rendered here -->
+                </div>
+                
+                <div class="artwork-description">
+                    <div class="museum-label">
+                        <div class="artwork-title">Untitled (after Edward Zajec)</div>
+                        <div class="artwork-details">2013</div>
+                    </div>
+                    <p>Direct translation of Edward Zajec's "Untitled" from 1977. Each figure is drawn by a separate function, with values carefully studied to be as accurate as possible to the original piece. Originally published in "Computer Graphics and Art" v2n4, 1977. Part of the <a href="http://recodeproject.com/translation/alonso-araujo-untitled-direct-untitled-edward-zajec" target="_blank">ReCode Project</a> - a community-driven effort to preserve and recreate computer art from the past. Created with Processing / p5.js.</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <p><a href="../">← Back to explorations</a> | <a href="../../">Home</a></p>
+            </div>
+        </main>
+    </div>
+    <script src="sketch.js"></script>
+</body>
+</html> 
