@@ -25,9 +25,30 @@ let number3 = 1;
 let colur3 = 2;
 let triangleOpacity = 255;
 let began = 1;
+let autoTimer = 0;
 
 function setup() {
-  let canvas = createCanvas(500, 650);
+  // Check if we're on mobile and adjust canvas size
+  let isMobile = window.innerWidth <= 600;
+  let canvasWidth = 500;
+  let canvasHeight = 650;
+  
+  if (isMobile) {
+    let maxWidth = window.innerWidth * 0.9;
+    let maxHeight = window.innerHeight * 0.7;
+    
+    // Maintain aspect ratio while fitting on screen
+    let aspectRatio = 500 / 650;
+    if (maxWidth / aspectRatio > maxHeight) {
+      canvasHeight = maxHeight;
+      canvasWidth = maxHeight * aspectRatio;
+    } else {
+      canvasWidth = maxWidth;
+      canvasHeight = maxWidth / aspectRatio;
+    }
+  }
+  
+  let canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent('sketch-container');
   noStroke();
   background(255);
@@ -36,6 +57,13 @@ function setup() {
 }
 
 function draw() {
+  
+  // Auto-animate every 10 frames (slower progression)
+  autoTimer++;
+  if(autoTimer >= 10) {
+    autoTimer = 0;
+    autoProgress();
+  }
   
   drawCenterRectangle();
   drawUpperRectangle();
@@ -240,8 +268,7 @@ function drawTriangle(){
   pop();
 }
 
-function mouseMoved(){
-
+function autoProgress(){
   numero++;
   number2++;
   number3++;
@@ -275,5 +302,10 @@ function mouseMoved(){
   triangleOpacity = 0;
   rotar = rotar + 0.005;
   rotar2 = rotar2 + 0.005;
-  began =0;
+  began = 0;
+}
+
+function mouseMoved(){
+  // Still allow mouse interaction to speed up evolution
+  autoProgress();
 } 
