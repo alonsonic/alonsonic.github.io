@@ -28,27 +28,7 @@ let began = 1;
 let autoTimer = 0;
 
 function setup() {
-  // Check if we're on mobile and adjust canvas size
-  let isMobile = window.innerWidth <= 600;
-  let canvasWidth = 500;
-  let canvasHeight = 650;
-  
-  if (isMobile) {
-    let maxWidth = window.innerWidth * 0.9;
-    let maxHeight = window.innerHeight * 0.7;
-    
-    // Maintain aspect ratio while fitting on screen
-    let aspectRatio = 500 / 650;
-    if (maxWidth / aspectRatio > maxHeight) {
-      canvasHeight = maxHeight;
-      canvasWidth = maxHeight * aspectRatio;
-    } else {
-      canvasWidth = maxWidth;
-      canvasHeight = maxWidth / aspectRatio;
-    }
-  }
-  
-  let canvas = createCanvas(canvasWidth, canvasHeight);
+  let canvas = createCanvas(500, 650);
   canvas.parent('sketch-container');
   noStroke();
   background(255);
@@ -58,7 +38,6 @@ function setup() {
 
 function draw() {
   
-  // Auto-animate every 10 frames (slower progression)
   autoTimer++;
   if(autoTimer >= 10) {
     autoTimer = 0;
@@ -306,6 +285,5 @@ function autoProgress(){
 }
 
 function mouseMoved(){
-  // Still allow mouse interaction to speed up evolution
   autoProgress();
 } 
