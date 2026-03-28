@@ -6,12 +6,38 @@ Copyright (c) 2013 Alonso Araujo - OSI/MIT license (http://recodeproject/license
 */
 
 function setup() {
-  let canvas = createCanvas(500, 650);
+  let canvas = createCanvas(500, 650, SVG);
   canvas.parent('sketch-container');
-  noStroke();
-  background(255);
   ellipseMode(CENTER);
   rectMode(CENTER);
+
+  setupDownloadButton();
+}
+
+let isPreparingDownload = false;
+const DOWNLOAD_DELAY_MS = 10000; // wait ~10 seconds so the image fully renders
+
+function setupDownloadButton() {
+  const btn = document.getElementById('download-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    if (isPreparingDownload) return;
+    isPreparingDownload = true;
+
+    const originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Preparing download...';
+
+    setTimeout(() => {
+      // Save the current canvas as an SVG after the delay
+      save('untitled-after-zajec.svg');
+
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      isPreparingDownload = false;
+    }, DOWNLOAD_DELAY_MS);
+  });
 }
 
 /* 
@@ -30,7 +56,9 @@ function draw() {
   drawUpperCircle();
   drawBottomCircle();
   drawTriangle();
-  
+
+  // Draw the scene only once so the SVG doesn't accumulate layers
+  noLoop();
 }
 
 function drawCenterEllipse(){
@@ -40,13 +68,12 @@ function drawCenterEllipse(){
   let positionX = 205;
   let positionY = 205;
   
+  stroke(0);          // dark stroke
+  strokeWeight(2);
+  noFill();
+  
   for(let d = diameterMin; d < diameterMax; d = d + 33){
-    
-    stroke(1,10);
-    strokeWeight(2);
-    fill(255,255,255,0);
     ellipse(positionX, positionY, d, d);
-    
   }
   
 }
@@ -62,17 +89,15 @@ function drawCenterRectangle(){
   translate(positionX,positionY);
   rotate(0.6);
   
+  stroke(0);          // dark stroke
+  strokeWeight(1.2);
+  noFill();
+  
   for(let d = diameterMin; d < diameterMax; d = d + 10){
-    
-    
-    stroke(1,10);
-    strokeWeight(1.2);
-    fill(255,255,255,0);
     if(d + 10 < diameterMax)
       rect(0, 0, d, d,3);
     else
       rect(0, 0, d, d);
-    
   }
   pop();
   
@@ -88,16 +113,15 @@ function drawUpperRectangle(){
   translate(positionX,positionY);
   rotate(0.6);
   
+  stroke(0);          // dark stroke
+  strokeWeight(1.2);
+  noFill();
+  
   for(let d = diameterMin; d < diameterMax; d = d + 10){
-    
-    stroke(1,10);
-    strokeWeight(1.2);
-    fill(255,255,255,0);
     if(d + 10 < diameterMax)
       rect(0, 0, d, d,3);
     else
       rect(0, 0, d, d);
-    
   }
   pop();
   
@@ -111,13 +135,12 @@ function drawUpperCircle(){
   let positionX = 375;
   let positionY = 250;
   
+  stroke(0);          // dark stroke
+  strokeWeight(2);
+  noFill();
+  
   for(let d = diameterMin; d < diameterMax; d = d + 6){
-    
-    stroke(0.5,2);
-    strokeWeight(2);
-    fill(255,255,255,0);
     ellipse(positionX, positionY, d, d);
-    
   }
   
 }
@@ -129,13 +152,12 @@ function drawBottomCircle(){
   let positionX = 470;
   let positionY = 525;
   
+  stroke(0);          // dark stroke
+  strokeWeight(2);
+  noFill();
+  
   for(let d = diameterMin; d < diameterMax; d = d + 10){
-    
-    stroke(0.5,2);
-    strokeWeight(2);
-    fill(255,255,255,0);
     ellipse(positionX, positionY, d, d);
-    
   }
   
 }
@@ -150,13 +172,12 @@ function drawTriangle(){
   let y3 = -33;
   let maxTriangles = 70;
   
+  stroke(0);          // dark stroke
+  strokeWeight(2);
+  noFill();
+  
   for(let i = 0; i < maxTriangles; i = i + 5){
-    
-    stroke(0.5,20);
-    strokeWeight(2);
-    fill(255,255,255,0);
     triangle(x1 + i, y1, x2 - i/2, y2 - i, x3 - i/2, y3 + i);
-    
   }
   
 } 

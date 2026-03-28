@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Revolution - Alonso Araujo</title>
-    <meta name="description" content="in line revolution">
+    <title>Figure Study #2 - Alonso Araujo</title>
+    <meta name="description" content="Figure study exploration.">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
@@ -28,7 +28,7 @@
         }
         
         .artwork-description {
-            width: 500px; /* match artwork width so text starts at the same left edge */
+            max-width: 600px;
             text-align: left;
         }
         
@@ -71,6 +71,23 @@
                 padding: 0 1rem;
             }
         }
+
+        .export-button {
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            font-family: "Open Sans", sans-serif;
+            font-size: 0.9rem;
+            border-radius: 999px;
+            border: 1px solid #ccc;
+            background: #f7f7f7;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .export-button:hover {
+            background: #eee;
+            border-color: #aaa;
+        }
     </style>
 </head>
 <body>
@@ -80,13 +97,14 @@
                 <div class="artwork" id="sketch-container">
                     <canvas id="preview-canvas"></canvas>
                 </div>
+                <button id="download-svg-button" class="export-button">Download as SVG</button>
                 
                 <div class="artwork-description">
                     <div class="museum-label">
-                        <div class="artwork-title">Revolution</div>
+                        <div class="artwork-title">Figure Study #2</div>
                         <div class="artwork-details">2025</div>
                     </div>
-                    <p>in line revolution</p>
+                    <p>Second figure study exploration.</p>
                 </div>
             </div>
             
@@ -98,5 +116,3 @@
     <script src="sketch.js"></script>
 </body>
 </html>
-
-

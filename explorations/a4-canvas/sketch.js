@@ -189,7 +189,80 @@ function drawWavyLine(yMm, amplitudeMm, frequency, noiseAmountMm) {
     }
 }
 
+// --- SVG Export ------------------------------------------------------------
+
+function buildSvgContent() {
+    // Use the same geometry as the on-screen drawing:
+    const safeTop = TOP_MARGIN_MM + MAX_OFFSET_MM;
+    const safeBottom = A4_HEIGHT - BOTTOM_MARGIN_MM - MAX_OFFSET_MM;
+    const lines = Math.max(1, NUM_LINES | 0);
+    const spanMm = Math.max(0, safeBottom - safeTop);
+    const spacing = lines > 1 ? spanMm / (lines - 1) : 0;
+
+    const margin = 15;       // must match drawWavyLine
+    const stepMm = 1;
+    const strokeWidthMm = 0.25;
+
+    let svgParts = [];
+
+    // White paper background
+    svgParts.push(
+        `<rect x="0" y="0" width="${A4_WIDTH}" height="${A4_HEIGHT}" fill="#ffffff"/>`
+    );
+
+    for (let rowIndex = 0; rowIndex < lines; rowIndex++) {
+        const y = safeTop + spacing * rowIndex;
+
+        // Export a fully "vibrating" snapshot
+        const noiseAmount = MAX_OFFSET_MM;
+
+        let points = [];
+
+        for (let x = margin; x <= A4_WIDTH - margin; x += stepMm) {
+            const randomOffset = (Math.random() - 0.5) * 2 * noiseAmount;
+            const currentX = x;
+            const currentY = y + randomOffset;
+
+            points.push(`${currentX.toFixed(3)},${currentY.toFixed(3)}`);
+        }
+
+        svgParts.push(
+            `<polyline points="${points.join(" ")}" stroke="#000000" stroke-width="${strokeWidthMm}" fill="none" stroke-linecap="round" stroke-linejoin="round" />`
+        );
+    }
+
+    return svgParts.join("\n");
+}
+
+function exportToSVG() {
+    const svgBody = buildSvgContent();
+    const svg = [
+        `<svg xmlns="http://www.w3.org/2000/svg"`,
+        `     width="${A4_WIDTH}mm" height="${A4_HEIGHT}mm"`,
+        `     viewBox="0 0 ${A4_WIDTH} ${A4_HEIGHT}">`,
+        svgBody,
+        `</svg>`
+    ].join("\n");
+
+    const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    const date = new Date().toISOString().slice(0, 10);
+    link.download = `a4-canvas-${date}.svg`;
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     setup();
+
+    const downloadButton = document.getElementById('download-svg-button');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', exportToSVG);
+    }
 });

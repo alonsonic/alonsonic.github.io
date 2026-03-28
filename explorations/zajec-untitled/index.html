@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
     <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <!-- Use p5.js version compatible with p5.js-svg -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+    <!-- SVG renderer for p5 -->
+    <script src="https://unpkg.com/p5.js-svg@1.3.1"></script>
     <style>
         .artwork-container {
             display: flex;
@@ -20,7 +23,7 @@
         .artwork {
             width: 500px;
             height: 650px;
-            border: 1px solid #ddd;
+            /* no border or background so exported SVG appears clean */
             margin-bottom: 3rem;
             display: flex;
             justify-content: center;
@@ -52,6 +55,16 @@
         .navigation {
             margin-top: 3rem;
             text-align: center;
+        }
+        
+        .download-button {
+            margin: 1rem 0 2rem 0;
+        }
+
+        .download-button button {
+            padding: 0.5rem 1.5rem;
+            font-size: 1.4rem;
+            cursor: pointer;
         }
         
         @media only screen and (max-width: 600px) {
@@ -92,6 +105,10 @@
             <div class="artwork-container">
                 <div class="artwork" id="sketch-container">
                     <!-- Processing sketch will be rendered here -->
+                </div>
+                
+                <div class="download-button">
+                    <button id="download-btn" type="button">Download image</button>
                 </div>
                 
                 <div class="artwork-description">
