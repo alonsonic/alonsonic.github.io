@@ -98,6 +98,13 @@ main {
     margin-top: 0;
 }
 
+.mobile-only { display: none; }
+
+@media only screen and (max-width: 600px) {
+    .mobile-only { display: inline; }
+    .desktop-only { display: none; }
+}
+
 .post-excerpt p {
     margin: 0;
     font-size: 0.9em;
