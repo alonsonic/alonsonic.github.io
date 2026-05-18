@@ -82,7 +82,7 @@ main {
     width: 80%;
     max-width: 710px;
     margin: 4rem auto;
-    padding-bottom: 4rem;
+    padding-bottom: 6rem;
 }
 
 .post-header {
@@ -132,8 +132,10 @@ main {
 
 /* Footer styles for wave animation */
 .footer-wrapper {
-    position: relative;
-    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 84px;
 }
 
